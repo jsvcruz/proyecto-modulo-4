@@ -66,6 +66,20 @@ contract Staking is Ownable, Pausable, ReentrancyGuard  {
         return (userStake.amount * rewardRate * blocksStaked) / 1e18;
     }
 
+    // Function to return totalStaked
+    function getTotalStaked() public view returns (uint256) {
+      
+        return totalStaked;
+    }
+
+    // Function to return if approved
+    function checkApproved(address _approved) public view returns (bool) {
+      
+        return approved[_approved];
+    }
+
+
+
     // Function to claim rewards
     function claimRewards() public whenNotPaused nonReentrant isApproved payable {
         uint256 rewards = pendingRewards(msg.sender);

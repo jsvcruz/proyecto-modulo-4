@@ -24,6 +24,8 @@ describe("Token contract", () => {
     const { token, owner } = await loadFixture(deployTokenFixture);
     const ownerBalance = await token.balanceOf(owner.address);
     expect(await token.totalSupply()).to.equal(ownerBalance);
+    console.log('Token Owner Address: ' + (owner.address));
+    console.log('Token Balance: ' + (await token.balanceOf(owner.address)));
   });
 
 

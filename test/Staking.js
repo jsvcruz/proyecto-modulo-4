@@ -6,8 +6,10 @@ describe("Staking contract", () => {
 
 
 beforeEach(async function () {
+    const [owner, addr1, addr2] = await ethers.getSigners();
     token = await ethers.getContractFactory("Token");         
-    token = await token.deploy(); 
+    token = await token.deploy();  
+    console.log('Balance BeforeEach:'+  (await token.balanceOf(owner.address)) );
     
 });
 
@@ -46,52 +48,49 @@ beforeEach(async function () {
 
   });
 
-  /*
-  it("Should assign the total supply of tokens to the owner", async () => {
-    const { token, owner } = await loadFixture(deployTokenFixture);
-    const ownerBalance = await token.balanceOf(owner.address);
-    expect(await token.totalSupply()).to.equal(ownerBalance);
-  });
+  it("Approve function must include address", async () => {
+    
+   
+    const { staking, owner, addr1, addr2 } = await loadFixture(deployStakingFixture); 
 
-  describe("Transactions", () => {
-    it("Should transfer tokens between accounts", async () => {
-      const { token, owner, addr1, addr2 } = await loadFixture(deployTokenFixture);
+    // First approve owner so it can stake
+    await staking.approve(owner.address);
 
-      await token.transfer(addr1.address, 50n * 10n ** 18n);
-      expect(await token.balanceOf(addr1.address)).to.equal(50n * 10n ** 18n);
+    //console.log('Approved:'+ staking.approved(owner.address));           
+    expect(await staking.checkApproved(owner.address)).to.equal(true);
 
-      await token.connect(addr1).transfer(addr2.address, 50n * 10n ** 18n);
-      expect(await token.balanceOf(addr2.address)).to.equal(50n * 10n ** 18n);
-      expect(await token.balanceOf(addr1.address)).to.equal(0n);
-    });
+    
+  
+});
 
-    it("Should fail if sender doesn't have enough tokens", async () => {
-      const { token, owner, addr1 } = await loadFixture(deployTokenFixture);
-      const initialOwnerBalance = await token.balanceOf(owner.address);
 
-      await expect(
-        token.connect(addr1).transfer(owner.address, 1n * 10n ** 18n)
-      ).to.be.revertedWith("Insufficient balance");
+/*
+  it("Stake should transfer tokens from sender to contract", async () => {
+    
+   
+    const { staking, owner, addr1, addr2 } = await loadFixture(deployStakingFixture); 
+    
+    //const ownerBalance = await token.balanceOf(tokenOwner.address);
+    //expect(await token.totalSupply()).to.equal(ownerBalance);
+    
+    // First approve owner so it can stake
+    await staking.approve(owner.address);
+    console.log('Staking Approved:'+ await staking.checkApproved(owner.address) ); 
 
-      expect(await token.balanceOf(owner.address)).to.equal(initialOwnerBalance);
-    });
+    //console.log('Approved:'+ staking.approved(owner.address));     
+    console.log('Staking Owner:'+ owner.address );       
+    //console.log('Balance Second:'+  ( await token.balanceOf(towner.address)) );
 
-    it("Should update balances after transfers", async () => {
-      const { token, owner, addr1, addr2 } = await loadFixture(deployTokenFixture);
-      const initialOwnerBalance = await token.balanceOf(owner.address);
+    await token.approve(owner.address, 1000);
 
-      await token.transfer(addr1.address, 100n * 10n ** 18n);
-      await token.transfer(addr2.address, 50n * 10n ** 18n);
+    await staking.connect(owner).stake(100));
+    console.log('Total Staked:'+ (await staking.getTotalStaked()) );    
+    expect(await staking.getTotalStaked()).to.equal(100);
+    //expect(await token.balanceOf(addr1.address)).to.equal(0n);
+    
+  
+});
 
-      const finalOwnerBalance = await token.balanceOf(owner.address);
-      expect(finalOwnerBalance).to.equal(initialOwnerBalance - 150n * 10n ** 18n);
-
-      const addr1Balance = await token.balanceOf(addr1.address);
-      expect(addr1Balance).to.equal(100n * 10n ** 18n);
-
-      const addr2Balance = await token.balanceOf(addr2.address);
-      expect(addr2Balance).to.equal(50n * 10n ** 18n);
-    });
-  });
-  */
+*/
+  
 });
