@@ -26,8 +26,8 @@ contract Staking is Ownable, Pausable, ReentrancyGuard  {
     mapping(address => Stake) public stakes;
     mapping(address => bool) public approved;
 
-    constructor(address tokenAddress) Ownable() {
-        stakingToken = Token(tokenAddress);
+    constructor() Ownable() {
+        stakingToken = new Token();
     }
 
     // Check if user is preapproved to stake tokens
