@@ -4,7 +4,7 @@
 * [Jose Cruz](https://github.com/jsvcruz)
 * [Álvaro Araya Obando](https://github.com/alvaro-araya)
 * [Gabriela Carvajal Herra](https://github.com/KGCHERRA) 
-* Josue Arroyo Aráuz
+* [Josue Arroyo Aráuz](https://github.com/samxellmusic1)
  
 # Staking Contract
 
