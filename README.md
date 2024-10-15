@@ -4,7 +4,7 @@
 * [Jose Cruz](https://github.com/jsvcruz)
 * [Álvaro Araya Obando](https://github.com/alvaro-araya)
 * [Gabriela Carvajal Herra](https://github.com/KGCHERRA) 
-* Josue Arroyo Aráuz
+* [Josue Arroyo Aráuz](https://github.com/samxellmusic1)
  
 # Staking Contract
 
@@ -13,6 +13,6 @@ This new version uses Hardhat as development framework.
 
 ## Contract URLs
 
-In progress ...
+URL Del contrato Token: https://sepolia.etherscan.io/address/0x50484Cf29099491119e3419f5ff065a45A65C846
 
-
+URL Del contrato Staking: https://sepolia.etherscan.io/address/0xac0157287b83FC723C4CAEb9Fec70c3D7035AcE0
